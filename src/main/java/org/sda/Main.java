@@ -7,7 +7,7 @@ import org.sda.services.GenericService;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello");
+
         GenericDao<Location, Long> locationDao = new GenericDao<>(Location.class);
         GenericService<Location, Long> locationService = new GenericService<>(locationDao);
 
