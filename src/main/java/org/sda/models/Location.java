@@ -1,6 +1,11 @@
 package org.sda.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+
+
 
 @Entity
 @Table(name = "locations")
@@ -21,6 +26,8 @@ public class Location {
     @Column(nullable = false)
     private String state;
 
+    @OneToMany(mappedBy = "location")
+    private List<WeatherData> weatherDatas = new ArrayList<>();
 
     public Location(Double longitude, Double latitude, String name, String state) {
        // this.id = id;
@@ -28,6 +35,15 @@ public class Location {
         this.latitude = latitude;
         this.name = name;
         this.state = state;
+    }
+
+    public Location() {
+
+    }
+
+    public void setWeatherData(WeatherData weatherData) {
+        weatherDatas.add(weatherData);
+        weatherData.setLocation(this);
     }
 
     @Override

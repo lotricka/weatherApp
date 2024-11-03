@@ -2,10 +2,12 @@ package org.sda.daos;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.sda.util.HibernateUtil;
 
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.List;
 
 public class GenericDao<T, ID extends Serializable> {
     private final Class<T> entityType;
@@ -27,6 +29,13 @@ public class GenericDao<T, ID extends Serializable> {
             return session.get(entityType, id);
         }
     }
+//
+//    public List<T> getAll(){
+//        try(Session session = HibernateUtil.getSessionFactory().)
+//        Query<T> query = session.createQuery("from " + entityType.getName(), entityType);
+//        return query.getResultList();
+//    }
+
 
     public void update(T entity){
         try(Session session = HibernateUtil.getSessionFactory().openSession()) {
